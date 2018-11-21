@@ -33,7 +33,7 @@ public class Project {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
-    @PrePersist
+        @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
     }
