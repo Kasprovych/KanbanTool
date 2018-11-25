@@ -1,5 +1,6 @@
 package ua.kanban.ppmtool.web;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +13,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/project")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ProjectController {
 
-    @Autowired
     private ProjectService projectService;
-    @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
     @RequestMapping("")
@@ -36,4 +36,8 @@ public class ProjectController {
             return new ResponseEntity<Project>(project, HttpStatus.OK);
     }
 
+    @GetMapping("/all")
+    public Iterable<Project> getAllProjects() {
+        return projectService.findAllProjects();
+    }
 }
